@@ -1,4 +1,3 @@
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,15 +9,28 @@ public class GooglePage {
     @FindBy(name = "q")
     WebElement searchInputField;
 
+    @FindBy(css = ".VlcLAe input[name=\"btnK\"")
+    WebElement searchButton;
+
+    @FindBy(css = ".srg a")
+    WebElement firstResultLink;
+
     public GooglePage(WebDriver webDriver) {
         driver = webDriver;
         PageFactory.initElements(driver, this);
     }
 
-    public void searchFor(String text){
+    public void enterSearchText(String text){
         searchInputField.clear();
         searchInputField.sendKeys(text);
-        searchInputField.sendKeys(Keys.RETURN);
+    }
+
+    public void clickSearchButton(){
+        searchButton.click();
+    }
+
+    public void clickOnFirstResultLink(){
+        firstResultLink.click();
     }
 
 
