@@ -1,7 +1,10 @@
+package cucumber.tests;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -24,7 +27,6 @@ public class GoogleTest {
         googlePage.clickSearchButton();
     }
 
-
     @Test
     public void SimpleTest(){
         System.out.println("Check title");
@@ -38,10 +40,16 @@ public class GoogleTest {
     }
 
     @Test
-    public void CompareSearchTextWithRearchResultSourse(){
-        System.out.println("Compare Search TextWith Rearch Result Sourse");
-        googlePage.clickOnFirstResultLink();
-        Assert.assertTrue(driver.getPageSource().contains("trololo"));
+    public void CompareSearchTextWithSearchResultSource(){
+        System.out.println("Compare Search Text With Search Result Source");
+        googlePage.clickOnSecondResultLink();
+        Assert.assertTrue(driver.findElement(By.tagName("html")).getText().contains("trololo"));
+    }
+
+    @Test
+    public void ComparingSearchTextWithSearchResults(){
+        System.out.println("Comparing Search Text With Search Results");
+        Assert.assertTrue(googlePage.getSearchResult().toLowerCase().contains("trololo"));
     }
 
     @After
